@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pmav_flutter/constants/textTheme.dart';
 
-import 'pages/homePage.dart';
-
-const FLAG_COLOR = Color.fromRGBO(0, 84, 163, 1);
-const PRIMARY_COLOR = Color.fromRGBO(20, 20, 20, 1);
+import 'constants/colors.dart';
+import 'pages/aboutPMAV.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,34 +12,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Map<int, Color> swatch = {
-      50:  const Color(0xffe1f5ff),//10%
-      100: const Color(0xffb2e4ff),//20%
-      200: const Color(0xff7ed3ff),//30%
-      300: const Color(0xff47c2ff),//40%
-      400: const Color(0xff15b4ff),//50%
-      500: const Color(0xff00a7fd),//60%
-      600: const Color(0xff0099ee),//70%
-      700: const Color(0xff0086d9),//80%
-      800: const Color(0xff0075c5),//90%
-      900: const Color(0xff0054a3),//100%
-    };
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          primarySwatch: MaterialColor(FLAG_COLOR.value, swatch),
-          textTheme: const TextTheme(
-              headline1: TextStyle(color: FLAG_COLOR, fontSize: 40),
-              subtitle2: TextStyle(color: FLAG_COLOR),
-              subtitle1: TextStyle(color: FLAG_COLOR),
-              bodyText1: TextStyle(fontSize: 17))),
+          primarySwatch: MaterialColor(flagColor.value, swatch),
+          textTheme: textTheme),
       home: const MyHomePage(title: 'PMAV'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({ Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -59,12 +42,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Widget? page;
+  final GlobalKey<ScaffoldState> _drawerScaffoldKey =
+      GlobalKey<ScaffoldState>();
+
   Widget pmavListTile(String text, Widget widget, [Icon? icon]) {
     return Column(
       children: <Widget>[
-        const Divider(color: Colors.black45,
-          indent: 15,
-          endIndent: 15),
+        const Divider(color: Colors.black45, indent: 15, endIndent: 15),
         ListTile(
           title: Text(
             text,
@@ -76,7 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
             });
             Navigator.pop(context);
           },
-          trailing: Padding(padding: EdgeInsets.only(right: 20), child: icon,),
+          trailing: Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: icon,
+          ),
         ),
       ],
     );
@@ -91,9 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             DrawerHeader(
               child: Container(
-                child:
-                const Image(image: AssetImage('assets/img/PMAV-logo-trans.png')),
-                margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
+                child: const Image(
+                    image: AssetImage('assets/img/PMAV-logo-trans.png')),
+                margin:
+                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 2.0),
               ),
               decoration: const BoxDecoration(
                 image: DecorationImage(
@@ -102,14 +90,19 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            pmavListTile('About PMAV', homePage(context)),
-            pmavListTile('Getting Started', homePage(context)),
-            pmavListTile('Links & Contacts', homePage(context)),
-            pmavListTile('Miner\'s Right', homePage(context)),
-            pmavListTile('Join PMAV', homePage(context), const Icon(Icons.open_in_new, color: Colors.black87, size: 35,)),
-            const Divider(color: Colors.black45,
-                indent: 15,
-                endIndent: 15),
+            pmavListTile('About PMAV', aboutPMAV(context)),
+            pmavListTile('Getting Started', aboutPMAV(context)),
+            pmavListTile('Links & Contacts', aboutPMAV(context)),
+            pmavListTile('Miner\'s Right', aboutPMAV(context)),
+            pmavListTile(
+                'Join PMAV',
+                aboutPMAV(context),
+                const Icon(
+                  Icons.open_in_new,
+                  color: Colors.black87,
+                  size: 35,
+                )),
+            const Divider(color: Colors.black45, indent: 15, endIndent: 15),
           ],
         ),
       ),
@@ -118,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    page ??= homePage(context);
+    page ??= aboutPMAV(context);
     return Scaffold(
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
@@ -127,25 +120,42 @@ class _MyHomePageState extends State<MyHomePage> {
             widget.title,
             style: const TextStyle(color: Colors.white, fontSize: 25),
           ),
-          iconTheme: const IconThemeData(color: Colors.white),
+          centerTitle: true,
+          iconTheme: const IconThemeData(color: Colors.white, size: 35),
+          leading: IconButton(
+            onPressed: () {
+              //on drawer menu pressed
+              if (_drawerScaffoldKey.currentState!.isDrawerOpen) {
+                //if drawer is open, then close the drawer
+                Navigator.pop(context);
+              } else {
+                _drawerScaffoldKey.currentState?.openDrawer();
+                //if drawer is closed then open the drawer.
+              }
+            },
+            icon: Icon(Icons.menu),
+          ),
         ),
-        drawer: pmavDrawer(),
-        body: Container(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/img/bushes.jpg'),
-              fit: BoxFit.cover,
+        body: Scaffold(
+          drawer: pmavDrawer(),
+          key: _drawerScaffoldKey,
+          body: Container(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/img/bushes.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            // Center is a layout widget. It takes a single child and positions it
+            // in the middle of the parent.
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+              decoration: const BoxDecoration(color: Colors.white),
+              child: page,
             ),
           ),
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-          child: Container(
-            padding: const EdgeInsets.only(left: 15, right: 10, top: 10),
-            decoration: const BoxDecoration(color: Colors.white),
-            child: page,
-          ),
         ) // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        );
   }
 }

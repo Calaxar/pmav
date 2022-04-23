@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.calaxar.pmav_flutter">
    <application
-        android:label="pmav_flutter"
+        android:label="PMAV"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

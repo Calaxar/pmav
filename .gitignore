@@ -87,3 +87,5 @@ lint/tmp/
 # assets
 assets/
 img/
+*.png
+*.jpg
