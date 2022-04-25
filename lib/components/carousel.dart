@@ -34,7 +34,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
             });
           },
           enableInfiniteScroll: false,
-          height: 500,
+          height: 520,
         ),
       ),
       Row(

@@ -19,12 +19,12 @@ class CarouselCard extends StatelessWidget {
         children: [
           Image.asset(img, ),
           Container(
-              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.all(10),
               child: AutoSizeText(
                 text,
-                style: Theme.of(context).textTheme.bodyText1,
-                maxLines: 12,
+                style: Theme.of(context).textTheme.bodyText2,
                 maxFontSize: 21,
+                maxLines: 12,
               ))
         ],
       ),

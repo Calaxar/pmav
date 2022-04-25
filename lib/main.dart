@@ -140,7 +140,7 @@ class _MyHomePageState extends State<MyHomePage> {
           drawer: pmavDrawer(),
           key: _drawerScaffoldKey,
           body: Container(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/img/bushes.jpg'),
