@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pmav_flutter/constants/textTheme.dart';
+import 'package:pmav_flutter/pages/gettingStarted.dart';
 
 import 'constants/colors.dart';
 import 'pages/aboutPMAV.dart';
@@ -91,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             pmavListTile('About PMAV', aboutPMAV(context)),
-            pmavListTile('Getting Started', aboutPMAV(context)),
+            pmavListTile('Getting Started', gettingStarted(context)),
             pmavListTile('Links & Contacts', aboutPMAV(context)),
             pmavListTile('Miner\'s Right', aboutPMAV(context)),
             pmavListTile(

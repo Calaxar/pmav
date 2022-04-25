@@ -14,3 +14,4 @@ const Map<int, Color> swatch = {
 };
 
 const flagColor = Color.fromRGBO(0, 84, 163, 1);
+const linkColor = Color.fromRGBO(192,57,43, 1);
