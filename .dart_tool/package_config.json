@@ -62,6 +62,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "ffi",
+      "rootUri": "file:///D:/dev/tools/flutter/.pub-cache/hosted/pub.dartlang.org/ffi-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "file_picker",
+      "rootUri": "file:///D:/dev/tools/flutter/.pub-cache/hosted/pub.dartlang.org/file_picker-4.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///D:/dev/tools/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -70,6 +82,12 @@
     {
       "name": "flutter_lints",
       "rootUri": "file:///D:/dev/tools/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///D:/dev/tools/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -230,13 +248,19 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "win32",
+      "rootUri": "file:///D:/dev/tools/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.5.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "pmav_flutter",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-04-25T01:12:40.221541Z",
+  "generated": "2022-05-07T04:55:19.317667Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }
