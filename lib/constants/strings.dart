@@ -1,0 +1,1 @@
+const MINERS_RIGHT_PATH_KEY = "pmav_miners_right_path";
