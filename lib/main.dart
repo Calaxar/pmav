@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pmav_flutter/constants/textTheme.dart';
+import 'package:pmav_flutter/pages/contacts.dart';
 import 'package:pmav_flutter/pages/gettingStarted.dart';
 import 'package:pmav_flutter/pages/minersRight.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'constants/colors.dart';
 import 'pages/aboutPMAV.dart';
@@ -71,6 +73,29 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  Widget pmavLinkTile(String text, String ref, [Icon? icon]) {
+    return Column(
+      children: <Widget>[
+        const Divider(color: Colors.black45, indent: 15, endIndent: 15),
+        ListTile(
+          title: Text(
+            text,
+            style: const TextStyle(color: Colors.black87, fontSize: 24),
+          ),
+          onTap: () async {
+            final Uri uri =
+            Uri.parse(ref);
+            if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) throw 'Could not open link.';
+          },
+          trailing: Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: icon,
+          ),
+        ),
+      ],
+    );
+  }
+
   Widget pmavDrawer() {
     return Drawer(
       child: Container(
@@ -94,11 +119,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             pmavListTile('About PMAV', aboutPMAV(context)),
             pmavListTile('Getting Started', gettingStarted(context)),
-            pmavListTile('Links & Contacts', aboutPMAV(context)),
+            pmavListTile('Links & Contacts', const Contacts()),
             pmavListTile('Miner\'s Right', const MinersRight()),
-            pmavListTile(
+            pmavLinkTile(
                 'Join PMAV',
-                aboutPMAV(context),
+                'https://pmav.org.au/join-pmav/',
                 const Icon(
                   Icons.open_in_new,
                   color: Colors.black87,

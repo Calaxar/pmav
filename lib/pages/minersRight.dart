@@ -7,17 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/strings.dart';
 
-pickFile() async {
-  var result = await FilePicker.platform.pickFiles(
-    type: FileType.custom,
-    allowedExtensions: ['pdf'],
-  );
-  final prefs = await SharedPreferences.getInstance();
-  if (result?.files[0] != null) {
-    await prefs.setString(MINERS_RIGHT_PATH_KEY, result!.files[0].path!);
-  }
-}
-
 class MinersRight extends StatefulWidget {
   const MinersRight({Key? key}) : super(key: key);
 
@@ -36,6 +25,26 @@ class _MinersRightState extends State<MinersRight> {
   SnackBar fileNotFound = const SnackBar(
     content: Text('File not found. Try updating the shortcut.'),
   );
+
+  SnackBar fileNotUpdated = const SnackBar(
+    content: Text('Error: Shortcut couldn\'t be updated.'),
+  );
+
+  SnackBar fileUpdated(String fileName) => SnackBar(
+    content: Text('Shortcut updated to open $fileName.'),
+  );
+
+  pickFile() async {
+    var result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+    final prefs = await SharedPreferences.getInstance();
+    if (result?.files[0] != null) {
+      await prefs.setString(MINERS_RIGHT_PATH_KEY, result!.files[0].path!);
+      ScaffoldMessenger.of(context).showSnackBar(fileUpdated(result.files[0].name));
+    }
+  }
 
   showFile() async {
     final prefs = await SharedPreferences.getInstance();
