@@ -16,7 +16,7 @@ Widget aboutPMAV(context) {
       text: 'To make submissions to the Crown, Parliament, Members of Parliament, Statutory bodies, Local Government and the like, on matters affecting fossicking, prospecting, mining, and treatment.',
     ),
     CarouselCard(
-      img: 'assets/img/Historical-Mine-Shaft-Hunters.jpg',
+      img: 'assets/img/mural.jpeg',
       text: 'To assist individual members of the Association to take advantage of the heritage, rights and privileges conferred by the Miner’s Right, and generally to support and advise members.',
     ),
   ]);

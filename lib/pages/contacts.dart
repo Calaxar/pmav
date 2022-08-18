@@ -89,10 +89,10 @@ class _ContactsState extends State<Contacts>
                         try {
                           bool launched = await launchUrl(fbProtocolUrl);
                           if (!launched) {
-                            await launchUrl(webUri);
+                            await launchUrl(webUri, mode: LaunchMode.externalApplication);
                           }
                         } catch (e) {
-                          await launchUrl(webUri);
+                          await launchUrl(webUri, mode: LaunchMode.externalApplication);
                         }
                       },
                       text: 'PMAV',
@@ -129,11 +129,11 @@ class _ContactsState extends State<Contacts>
                   ContactCard(
                       onPressed: () async {
                         final Uri uri =
-                        Uri.parse('https://www.goldhuntersvictoria.com.au/');
+                        Uri.parse('https://www.vogus-prospecting.com/');
                         if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) throw 'Could not open link.';
                       },
-                      text: 'Gold Hunters Victoria',
-                      subtext: 'https://www.goldhuntersvictoria.com.au/',
+                      text: 'Vo-Gus Prospecting',
+                      subtext: 'https://www.vogus-prospecting.com/',
                       cardType: CardType.link,
                       icon: Icons.launch),
                 ],

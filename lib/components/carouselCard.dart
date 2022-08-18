@@ -15,6 +15,9 @@ class CarouselCard extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(5.0),
       decoration: BoxDecoration(border: Border.all(width: 2, color: Colors.black87)),
+      constraints: const BoxConstraints(
+        maxWidth: 500
+      ),
       child: Column(
         children: [
           Image.asset(img, ),

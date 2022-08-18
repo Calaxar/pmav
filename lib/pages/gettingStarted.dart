@@ -15,7 +15,7 @@ Widget gettingStarted(context) {
   final Uri _verUrl =
       Uri.parse('https://www.service.vic.gov.au/services/earth-resources');
   _launchVerUrl() async {
-    if (!await launchUrl(_verUrl)) throw 'Could not launch $_verUrl';
+    if (!await launchUrl(_verUrl, mode: LaunchMode.externalApplication)) throw 'Could not launch $_verUrl';
   }
 
   Widget paragraph({required Widget child}) => Padding(
