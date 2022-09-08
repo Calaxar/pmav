@@ -1,4 +1,4 @@
-package com.example.calaxar.pmav_flutter
+package com.calum_hay.pmav
 
 import io.flutter.embedding.android.FlutterActivity
 
