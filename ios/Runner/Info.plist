@@ -54,5 +54,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To select and set up a shortcut for user&apos;s Miner&apos;s Right (optional)</string>
 </dict>
 </plist>
